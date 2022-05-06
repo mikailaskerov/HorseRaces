@@ -14,3 +14,13 @@ I'd like to thank you for giving me the opportunity to complete this challenge, 
 * Code optimization
 * A list to choose from so as not to enter many fields manually
 * Move the value check in the fields to the backend part of the project
+
+# How to run:
+Copy the repository
+
+### Client folder
+npm install
+npm start
+
+### Server folder
+Start application
