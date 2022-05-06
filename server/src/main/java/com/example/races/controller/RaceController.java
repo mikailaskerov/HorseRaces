@@ -5,9 +5,10 @@ import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @AllArgsConstructor
-@CrossOrigin(origins = {"http://localhost:3000"})
+@CrossOrigin(origins = {"http://localhost:1234"})
 @RestController
 @RequestMapping("/api")
 public class RaceController {
@@ -26,18 +27,25 @@ public class RaceController {
 
     @PostMapping("/player/find")
     public Long userFind(@RequestBody String name){
-        var player = raceService.findPlayer(name);
-        return player.getId();
+        Optional<Player> player = raceService.findPlayer(name);
+        return player.get().getId();
     }
 
     @PostMapping("/race")
-    public void raceRegistration(@RequestBody Race race){
+    public Long raceRegistration(@RequestBody Race race){
         raceService.addRace(race);
+        return race.getId();
     }
 
     @PostMapping("/horse")
     public void horseRegistration(@RequestBody Horse horse){
         raceService.addHorse(horse);
+    }
+
+    @PostMapping("/horse/find")
+    public Long horseFind(@RequestBody String colour){
+        Optional<Horse> horse = raceService.findHorse(colour);
+        return horse.get().getId();
     }
 
     @PostMapping("/bet")
@@ -50,14 +58,40 @@ public class RaceController {
         raceService.addResult(result);
     }
 
-    @PostMapping("/horsesinrace")
-    public void horsesInRaceRegistration(@RequestBody HorsesInRace horsesInRace){
-        raceService.addHorseInRace(horsesInRace);
+    @GetMapping("/horsesinrace/{raceId}/{horseId}")
+    public void horsesInRaceRegistration(@PathVariable Integer raceId, @PathVariable Integer horseId){
+        raceService.addHorseInRace(raceId, horseId);
     }
 
-    @PostMapping("/horsesinrace/find")
-    public  List<HorsesInRace> horseInRaceList(@RequestBody int id){
-        List<HorsesInRace> horsesInRace;
-        return horsesInRace = raceService.horseInRaceList(id);
+    @GetMapping("horsesinrace/find/{raceId}/{horseId}")
+    public Long horseInRaceFind(@PathVariable Integer raceId, @PathVariable Integer horseId){
+        Optional<HorsesInRace> horsesInRace = raceService.findHorsesInRace(raceId, horseId);
+        return horsesInRace.get().getId();
+    }
+
+    @GetMapping("bet/find/{playerId}/{raceId}")
+    public Long betFind(@PathVariable Integer playerId, @PathVariable Integer raceId){
+        Bet bet = raceService.findBet(playerId, raceId);
+        return bet.getId();
+    }
+
+    @PostMapping("/race/start")
+    public String horseInRaceList(@RequestBody int id){
+        return raceService.startRace(id);
+    }
+
+    @PostMapping("/result/find")
+    public String resultFind(@RequestBody Integer id){
+        return raceService.findResult(id);
+    }
+
+    @PostMapping("/race/find")
+    public Optional<Race> raceFind(@RequestBody Integer id){
+        return raceService.findRace(id);
+    }
+
+    @GetMapping("bet/check/{raceId}/{playerId}")
+    public String betCheck(@PathVariable Integer raceId, @PathVariable Integer playerId){
+        return raceService.checkBet(raceId, playerId);
     }
 }

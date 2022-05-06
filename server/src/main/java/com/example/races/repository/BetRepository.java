@@ -6,4 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface BetRepository extends JpaRepository<Bet, Long> {
+    Bet findByPlayerIdAndRaceId(int playerId, int raceId);
+    Bet findByRaceIdAndPlayerId(int raceId, int playerId);
 }

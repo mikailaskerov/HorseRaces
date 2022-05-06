@@ -19,11 +19,11 @@ public class Bet {
     private Long id;
 
     @Column(name = "player_id")
-    private int player_id;
+    private int playerId;
 
     @Column(name = "race_id")
-    private int race_id;
+    private int raceId;
 
     @Column(name = "horse_id")
-    private int horse_id;
+    private int horseId;
 }

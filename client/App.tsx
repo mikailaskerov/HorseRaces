@@ -3,9 +3,9 @@ import './App.css';
 import Navbar from './components/Navbar';
 import Bet from './pages/Bet';
 import Home from './pages/Home';
-import Horse from './pages/Horse';
+import {Horse} from './pages/Horse';
 import {Player} from './pages/Player';
-import Race from './pages/Race';
+import {Race} from './pages/Race';
 
 function App() {
   return (

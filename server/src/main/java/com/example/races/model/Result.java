@@ -19,8 +19,8 @@ public class Result {
     private Long id;
 
     @Column (name = "race_id")
-    private int race_id;
+    private int raceId;
 
     @Column (name = "horse_id")
-    private int horse_id;
+    private int horseId;
 }

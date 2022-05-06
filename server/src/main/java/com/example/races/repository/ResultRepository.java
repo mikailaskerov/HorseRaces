@@ -6,4 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ResultRepository extends JpaRepository<Result, Long> {
+    Result findByRaceId(int id);
+    Result findByRaceIdAndHorseId(int raceId, int horseId);
 }

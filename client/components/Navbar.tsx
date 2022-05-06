@@ -16,14 +16,14 @@ function Navbar() {
               <Link to="player">
                 <div className="nav-link">Player</div>
               </Link>
-              <Link to="bet">
-                <div className="nav-link">Bet</div>
-              </Link>
               <Link to="horse">
-               <div className="nav-link">Horse</div>
+                <div className="nav-link">Horse</div>
               </Link>
               <Link to="race">
                <div className="nav-link">Race</div>
+              </Link>
+              <Link to="bet">
+               <div className="nav-link">Bet</div>
               </Link>
             </div>
           </div>

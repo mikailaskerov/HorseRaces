@@ -22,7 +22,7 @@ public class Race {
     private Long id;
 
     @Column (name = "date")
-    @JsonFormat(pattern="dd-MM-yyyy")
+    @JsonFormat(pattern="yyyy-MM-dd")
     private Date date;
 
     @Column (name = "place")
